@@ -3,6 +3,7 @@ use bevy::prelude::*;
 fn main() {
     App::new().add_startup_system(setup)
     .add_system(print_stats)
+    .add_system(print_weapons)
     .run()
 }
 
@@ -39,7 +40,7 @@ pub fn setup(mut commands: Commands)    {
 }
 
 
-pub fn print_stats(mut query: Query<(&Person, &Health)>) {
+pub fn print_stats(query: Query<(&Person, &Health)>) {
     for (person, health) in query.iter() {
         println!("Name: {}", person.name);
         println!("Stat: {}", person.stat);
@@ -48,15 +49,13 @@ pub fn print_stats(mut query: Query<(&Person, &Health)>) {
     }
 }
 
-pub fn print_weapons(mut query_weapons: Query<&Person>) {
-    let mut a: [String; 10];
-    let x: u8;
-    for item in query_weapons.iter() {
-        let a: [item.weapon; x];
-        x + 1
+pub fn print_weapons(query_weapons: Query<&Person>) {
+    let mut weapons: Vec<String> = Vec::new();
+
+    for person in query_weapons.iter() {
+        weapons.push(person.weapon.clone());
     }
-    let b = &a[..];
-    println!("{:?}", b);
+    println!("{:?}", weapons);
 }
 
 

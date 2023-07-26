@@ -52,6 +52,7 @@ pub fn print_weapons(query_weapons: Query<&Person>) {
     for person in query_weapons.iter() {
         weapons.push(person.weapon.clone());
     }
+    println!("Weapon options:");
     println!("{:?}", weapons);
 }
 

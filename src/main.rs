@@ -15,23 +15,23 @@ pub fn setup(mut commands: Commands)    {
         weapon: "Broadsword".to_string(),
     },  
         Health {
-        hp: 10
+        hp: 2
     },));
     
     commands.spawn((
         Person {
-        name: "Berty".to_string(),
+        name: "Bert".to_string(),
         stat: 8,
         weapon: "Vape".to_string(),
     }, 
         Health {
-        hp: 6
+        hp: 3
     },));
 
     commands.spawn((
         Person {
         name: "Cara".to_string(),
-        stat: 3,
+        stat: 6,
         weapon: "Nunchucks".to_string(),
     }, 
         Health{ 
@@ -42,10 +42,7 @@ pub fn setup(mut commands: Commands)    {
 
 pub fn print_stats(query: Query<(&Person, &Health)>) {
     for (person, health) in query.iter() {
-        println!("Name: {}", person.name);
-        println!("Stat: {}", person.stat);
-        println!("Weapon: {}", person.weapon);
-        println!("Health: {}", health.hp);
+        println!("Name: {}  Stat: {}    Health: {}  Weapon: {}", person.name, person.stat, health.hp, person.weapon);
     }
 }
 

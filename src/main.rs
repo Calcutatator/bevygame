@@ -1,15 +1,14 @@
-use bevy::prelude::*;
+use bevy::{prelude::*, sprite::MaterialMesh2dBundle};
 
 pub const HEIGHT: f32 = 720.0;
 pub const WIDTH: f32 = 1280.0;
 
 fn main() {
     App::new().add_startup_system(setup)
-    .add_startup_system(spawn_camera)
-    .add_system(print_stats)
-    .add_system(print_weapons)
-    .add_system(create_window)
-    .insert_resource(ClearColor(Color:: GREEN))
+    .add_startup_system(create_window)
+    .add_startup_system(print_stats)
+    .add_startup_system(print_weapons)
+    .add_plugins(DefaultPlugins)
     .run()
 }
 
@@ -20,17 +19,6 @@ fn create_window(mut commands: Commands) {
         ..default()
     });
 }
-
-#[derive(Component)]
-struct MyGameCamera;
-
-fn spawn_camera(mut commands: Commands) {
-    commands.spawn((
-        Camera3dBundle::default(),
-        MyGameCamera,
-    ));
-}
-
 
 pub fn setup(mut commands: Commands)    {
     commands.spawn((
